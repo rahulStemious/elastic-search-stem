@@ -10,7 +10,7 @@ resources:
     type: firebaseextensions.v1beta.function
     properties:
       location: ${param:LOCATION}
-      entryPoint: sync_firestore_to_elasticsearch
+      entryPoint: ${param:FUNCTION_ID}_firestore_to_elasticsearch
       eventTrigger:
         eventType: providers/cloud.firestore/eventTypes/document.write
         resource: projects/${PROJECT_ID}/databases/(default)/documents/${param:FIRESTORE_COLLECTION_PATH}/{docId}

@@ -1,0 +1,17 @@
+[debug] [2025-11-07T11:24:41.738Z] ----------------------------------------------------------------------
+[debug] [2025-11-07T11:24:41.745Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js --debug ext:install ../elastic-search-stem
+[debug] [2025-11-07T11:24:41.746Z] CLI Version:   14.23.0
+[debug] [2025-11-07T11:24:41.747Z] Platform:      win32
+[debug] [2025-11-07T11:24:41.747Z] Node Version:  v22.21.1
+[debug] [2025-11-07T11:24:41.748Z] Time:          Fri Nov 07 2025 16:54:41 GMT+0530 (India Standard Time)
+[debug] [2025-11-07T11:24:41.748Z] ----------------------------------------------------------------------
+[debug] 
+[error] 
+[error] Error: No currently active project.
+To run this command, you need to specify a project. You have two options:
+- Run this command with --project <alias_or_project_id>.
+- Set an active project by running firebase use --add, then rerun this command.
+To list all the Firebase projects to which you have access, run firebase projects:list.
+To learn about active projects for the CLI, visit https://firebase.google.com/docs/cli#project_aliases
+
+
