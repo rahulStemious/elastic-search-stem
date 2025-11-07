@@ -1,0 +1,42 @@
+name: firestore-elasticsearch-sync
+version: 1.4.0
+specVersion: v1beta
+
+displayName: Firestore → Elasticsearch Sync (Single Collection)
+description: Automatically sync Firestore documents to Elasticsearch index with custom field mapping.
+
+resources:
+  - name: sync_firestore_to_elasticsearch
+    type: firebaseextensions.v1beta.function
+    description: "Sync Firestore documents (create/update/delete) to an Elasticsearch index."
+    properties:
+      location: ${param:LOCATION}
+
+params:
+  - param: FIRESTORE_COLLECTION_PATH
+    label: Firestore Collection Path
+    description: "Path of the Firestore collection to sync."
+    example: "users"
+    required: true
+
+  - param: ELASTIC_INDEX
+    label: Elasticsearch Index Name
+    description: "Target index in Elasticsearch where documents will be stored."
+    example: "search-users"
+    required: true
+
+  - param: ELASTIC_API_KEY
+    label: Elasticsearch API Key
+    description: "API Key for Elasticsearch access."
+    secret: true
+    required: true
+
+  - param: INDEXED_FIELDS
+    label: Indexed Fields (Firestore → Elasticsearch mapping)
+    description: "Comma separated list of fields to index. Use '::' to rename fields (e.g., firstName::first_name,lastName::last_name,email)."
+    example: "firstName::first_name,lastName::last_name,email"
+    required: true
+
+  - param: LOCATION
+    label: Cloud Function Region
+    default: asia-south1

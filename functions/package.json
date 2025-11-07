@@ -1,0 +1,12 @@
+{
+  "name": "firestore-elasticsearch-extension",
+  "version": "1.0.0",
+  "description": "Sync a Firestore collection to Elasticsearch index with custom field mapping.",
+  "main": "index.js",
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.15.0",
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^6.0.0",
+    "lodash": "^4.17.21"
+  }
+}
