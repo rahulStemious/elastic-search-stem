@@ -1,10 +1,27 @@
-const client = require('./elasticsearchClient');
 const { mapAllowedKeys } = require('./utils');
 const { toSnakeCase } = require('./snakeCaseConverter');
 
-exports.handleFirestoreChange = async (change, context, indexName) => {
-  const { collectionId, docId } = context.params;
+if (typeof File === "undefined") {
+  global.File = class File extends Blob {
+    constructor(chunks, name, options = {}) {
+      super(chunks, options);
+      this.name = name;
+      this.lastModified = options.lastModified || Date.now();
+    }
+  };
+}
+const { Client } = require('@elastic/elasticsearch');
 
+const client = new Client({
+ node: process.env.ELASTIC_URL,
+auth: {
+  apiKey: process.env.ELASTIC_API_KEY
+}
+});
+
+exports.handleFirestoreChange = async (change, context, indexName) => {
+  const { collectionId, docId } = context;
+  console.log(`=> `,JSON.parse(JSON.stringify(context)));
   try {
     // DELETE
     if (!change.after.exists) {

@@ -6,16 +6,22 @@ displayName: Firestore → Elasticsearch Sync (Single Collection)
 description: Automatically sync Firestore documents to Elasticsearch index with custom field mapping.
 
 resources:
-  - name: ${param:FUNCTION_ID}_firestore_to_elasticsearch
+  - name: ${param:FUNCTION_ID}-firestore-to-elasticsearch
     type: firebaseextensions.v1beta.function
     properties:
       location: ${param:LOCATION}
-      entryPoint: ${param:FUNCTION_ID}_firestore_to_elasticsearch
+      entryPoint: sync_firestore_to_elasticsearch
       eventTrigger:
         eventType: providers/cloud.firestore/eventTypes/document.write
         resource: projects/${PROJECT_ID}/databases/(default)/documents/${param:FIRESTORE_COLLECTION_PATH}/{docId}
 
 params:
+  - param: FUNCTION_ID
+    label: Unique Function ID
+    description: "Used to uniquely identify this deployment (prevents overwriting)."
+    example: "users"
+    required: true
+
   - param: FIRESTORE_COLLECTION_PATH
     label: Firestore Collection Path
     description: "Path of the Firestore collection to sync."
@@ -33,6 +39,13 @@ params:
     description: "API Key for Elasticsearch access."
     secret: true
     required: true
+
+  - param: ELASTIC_URL
+    label: Elasticsearch URL
+    description: "Full URL of your Elasticsearch endpoint (e.g., https://your-es-cluster.es.amazonaws.com)."
+    example: "https://<id>.asia-south1.gcp.elastic-cloud.com:443"
+    required: true
+
 
   - param: INDEXED_FIELDS
     label: Indexed Fields (Firestore → Elasticsearch mapping)
