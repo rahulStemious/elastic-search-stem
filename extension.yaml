@@ -11,6 +11,13 @@ resources:
     description: "Sync Firestore documents (create/update/delete) to an Elasticsearch index."
     properties:
       location: ${param:LOCATION}
+      eventTrigger:
+            # Event Type: The Firestore event for Create, Update, or Delete (i.e., onWrite in your Node.js code)
+            eventType: providers/cloud.firestore/eventTypes/document.write
+            
+            # Resource: The path to the Firestore documents to watch.
+            # It uses the user-defined parameter value and appends the wildcard {docId}.
+            resource: projects/${PROJECT_ID}/databases/(default)/documents/${param:FIRESTORE_COLLECTION_PATH}/{docId}
 
 params:
   - param: FIRESTORE_COLLECTION_PATH
